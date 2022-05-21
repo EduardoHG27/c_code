@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Controllers\Student;
 
 use App\Controllers\BaseController;
@@ -8,6 +9,10 @@ use App\Models\PlansModel;
 use App\Models\PaysModel;
 use App\Entities\Student_ent;
 use App\Libraries\Datatable;
+use App\Libraries\PHPMailer_lib;
+
+
+
 
 class Student extends BaseController
 {
@@ -50,12 +55,12 @@ class Student extends BaseController
             $paysModel->where('pay_status', 'true');
             $query = $paysModel->get();
             $pay_data = $query->getResult('array');
-            
-          
-            //$pay_data = $paysModel->where('id_member', $data['id'])->findAll();
-          
 
-            
+
+            //$pay_data = $paysModel->where('id_member', $data['id'])->findAll();
+
+
+
 
 
             if ($pay_data == null) {
@@ -111,7 +116,7 @@ class Student extends BaseController
         $id = $this->request->getPost('id');
 
         $paysModel->select('*');
-        $paysModel->where('id_member', $this->request->getPost('id')); 
+        $paysModel->where('id_member', $this->request->getPost('id'));
         $paysModel->where('pay_status', 'true');
         $query = $paysModel->get();
         $data_validation = $query->getResult('array');
@@ -166,55 +171,57 @@ class Student extends BaseController
                     'body' => 'Este usuario no se encuentra registrado en el sistema'
                 ]);
                 */
-                $consulta['data'] = '0';
-                $consulta['msj'] = 'Este usuario no se encuentra registrado en el sistema';
+            $consulta['data'] = '0';
+            $consulta['msj'] = 'Este usuario no se encuentra registrado en el sistema';
 
             echo json_encode($consulta);
         } else {
 
-        
-            if($user['name']=='admin')
-            {
+
+            if ($user['name'] == 'admin') {
                 if ($password != $user['password']) {
-                    
+
                     $consulta['data'] = '1';
                     $consulta['msj'] = 'Contraseña Incorrecta';
                     echo json_encode($consulta);
-                }
-                else
-                {
+                } else {
                     $consulta['data'] = '5';
                     $consulta['msj'] = 'Admin';
                     echo json_encode($consulta);
-                   
                 }
-            }
-            else
-            {
+            } else {
                 if ($password != $user['password']) {
                     // if (!password_verify($password, $user->username)) {
                     $consulta['data'] = '1';
                     $consulta['msj'] = 'Contraseña Incorrecta';
-    
+
                     echo json_encode($consulta);
                 } else if ($user['status'] != 'true') {
                     $consulta['data'] = '2';
                     $consulta['msj'] = 'Usuario se agoto su membresia';
                     echo json_encode($consulta);
                 } else {
-    
+
                     $consulta['data'] = '3';
                     $consulta['msj'] = 'Usuario Activo';
                     echo json_encode($consulta);
                 }
             }
-           
-           
         }
     }
 
     public function store()
     {
+
+
+        $mail = new PHPMailer_lib();
+
+      
+
+
+
+
+
         $year = date("Y");
         $studetsModel = new StudetsModel();
         $data = [
@@ -230,10 +237,39 @@ class Student extends BaseController
         $query = $studetsModel->get();
         $data_validation = $query->getResult('array');
 
-     
-        if(empty($data_validation))
-        {
+
+        if (empty($data_validation)) {
+
+          
+
             if ($studetsModel->save($data)) {
+                $correo = $mail->load();
+                $correo->isSMTP();
+                $correo->Host = 'tls://smtp.gmail.com:587';
+                $correo->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                $correo->SMTPAuth = true;
+                $correo->Username  = 'desarrollo.hergut@gmail.com';
+                $correo->Password = 'hergut27';
+                $correo->SMTPSecure = 'ssl';
+                $correo->Port = 587;
+                $correo->setFrom('desarrollo.hergut@gmail.com', 'CodexWorld');
+                $correo->addReplyTo($this->request->getPost('email'), 'Codexworld');
+                $correo->addAddress($this->request->getPost('email'));
+                $correo->Subject = 'Registro de Usuario Exitoso';
+                $correo->isHTML(true);
+                $mailcontent = "<h1>Bienvenido, Ya eres miembro!!</h1>
+                 <p>Tu contraseña para Ingresar es : </p>".$this->request->getPost('password');
+        
+                $correo->Body = $mailcontent;
+                if (!$correo->send()) {
+                    var_dump($correo->ErrorInfo);
+                }
                 $consulta['id'] = $studetsModel->insertID();
                 $data = [
                     'matricula' =>  $year . $consulta['id']
@@ -242,19 +278,17 @@ class Student extends BaseController
                 $consulta['resp'] = '1';
                 echo json_encode($consulta);
             } else {
-    
+
                 $consulta['resp'] = '0';
                 echo json_encode($consulta);
             }
-    
-        }
-        else{
-            
+        } else {
+
             $consulta['resp'] = '3';
             echo json_encode($consulta);
         }
 
-      /*
+        /*
        
         $studetsModel = new StudetsModel();
         $data = [
@@ -415,7 +449,7 @@ class Student extends BaseController
         $planModel->select('*');
         $planModel->where('status', 'true');
         $query = $planModel->get();
- 
+
         if ($data = $query->getResult('array')) {
 
             //var_dump($data);
@@ -467,7 +501,7 @@ class Student extends BaseController
                 'status' => 'true'
             ];
 
-   
+
 
 
             $studetsModel->update($this->request->getPost('id'), $data);

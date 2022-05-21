@@ -49,11 +49,18 @@
 					<?php if (session('msg')) : ?>
 						<article class="message is<?= session('msg.type') ?>">
 							<div class="message-body">
+
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
 								<?= session('msg.body') ?>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
 							</div>
 						</article>
 					<?php endif; ?>
-				
+
 
 					<form action="<?= base_url(route_to('signin')) ?>" id="login-form" method="POST">
 						<div class="form-group">
@@ -66,7 +73,7 @@
 							<input type="password" id="password" name="password" class="form-control">
 							<p class="is-danger help"><?= session('errors.password') ?></p>
 						</div>
-						<center><button type="submit" id="btn_enter_pass"class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</button></center>
+						<center><button type="submit" id="btn_enter_pass" class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</button></center>
 
 
 					</form>
@@ -84,7 +91,7 @@
 
 
 
-	
+
 </script>
 
 

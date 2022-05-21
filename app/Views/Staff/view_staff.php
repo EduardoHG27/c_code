@@ -183,7 +183,7 @@
                         <button class="nav-link pestaña active" id="staff" data-bs-toggle="tab" data-bs-target="#member_form" type="button" role="tab" aria-controls="home" aria-selected="true">Staff</button>
                     </li>
                     <li class="nav-item" role="presentation" id="plan_pestaña">
-                        <button class="nav-link pestaña" style="" id="plan_button" data-bs-toggle="tab" data-bs-target="#plan_form" type="button" role="tab" aria-controls="profile" aria-selected="false">Elegir Plan</button>
+                        <button class="nav-link pestaña" style="" id="plan_button" data-bs-toggle="tab" data-bs-target="#plan_form" type="button" role="tab" aria-controls="profile" aria-selected="false">Elegir Horario</button>
                     </li>
                     <li class="nav-item" role="presentation" id="view_pestaña">
                         <button class="nav-link pestaña" style="" id="view_button" data-bs-toggle="tab" data-bs-target="#view_form" type="button" role="tab" aria-controls="profile" aria-selected="false">Datos Plan</button>
@@ -226,7 +226,10 @@
                                 <div class="row form-group">
                                 </div>
                             </form>
+                            <div class="modal-footer">
+                           
                             <button type="button" id="btnstaff" class="btn btn-info">Crear staff</button>
+                            </div>
                         </div>
 
 
@@ -320,11 +323,7 @@
 
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
-
-            </div>
+         
         </div>
     </div>
 </div>

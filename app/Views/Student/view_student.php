@@ -266,12 +266,12 @@
                                         <div class="form-group">
                                             <label>Seleccionar Mes</label>
                                             <select class="js-select2" id="plan_select" style="width: 100%;">
-                                            <option value="0">Selecciona</option>
+                                                <option value="0">Selecciona</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row form-group" >
+                                <div class="row form-group">
                                     <div id="div_5" class="col-md-4">
                                         <label class="control-label">Total</label>
                                         <input type="text" id="txt_total" name="txt_total" class="form-control" value="" readonly>
@@ -377,7 +377,7 @@
 </style>
 <script>
     var site_url = "<?php echo base_url(); ?>";
-   
+
     document.getElementById('txt_payid').style.display = 'none';
 
     $(document).ready(function() {
@@ -491,7 +491,7 @@
 
 
 
-      
+
 
         // DataTable
         table = $('#tbl-students-data').DataTable({
@@ -603,21 +603,7 @@
             }
         });
 
-        function enable_tabs() {
 
-
-            document.getElementById("plan_pestaña").classList.add('disabledTab');
-            document.getElementById("miembro").classList.remove('disabledTab');
-            document.getElementById("plan_pestaña").classList.add('enableTab');
-            document.getElementById("plan_pestaña").classList.add('active');
-            //document.getElementById("member_form").classList.remove('active');
-            // document.getElementById("plan_form").classList.add('active');
-            // document.getElementById("plan_form").classList.add('show');
-
-            $('#plan_button').attr("style", " ");
-
-
-        }
 
         function disable_tabs() {
             document.getElementById("plan_pestaña").classList.remove('enableTab');
@@ -682,15 +668,10 @@
 
             remove_red();
             $("#member-plan").data('validator').resetForm();
-            
-            $('#plan_select ').val('0');            
-            enable_tabs();
-
-            //  $('#miembro_pestaña').attr("class", "enabledTab");
-
+            $('#plan_select ').val('0');
 
             $('#msg').html('')
-
+            //  $('#miembro_pestaña').attr("class", "enabledTab");
             let data = table.rows('.selected').data()[0];
             if (data === undefined) {
                 Swal.fire({
@@ -819,23 +800,23 @@
         });
     }
 
-/*
-    var $planForm = $('#member-plan');
-    if ($planForm.length) {
-        $planForm.validate({
-            rules: {
-                txt_total: {
-                    required: true,
+    /*
+        var $planForm = $('#member-plan');
+        if ($planForm.length) {
+            $planForm.validate({
+                rules: {
+                    txt_total: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    txt_total: {
+                        required: 'Please enter username!'
+                    }
                 }
-            },
-            messages: {
-                txt_total: {
-                    required: 'Please enter username!'
-                }
-            }
-        });
-    }
-*/
+            });
+        }
+    */
 
     $("#btn-refresh").click(function() {
         start_load();
@@ -891,7 +872,7 @@
     });
 
     $("#btnmodmiembro").click(function() {
-     //   $('#txt_valor').val('300');
+        //   $('#txt_valor').val('300');
         if ($("#registration").valid() == false) {
 
             return;
@@ -1220,10 +1201,11 @@
     }
 
     function actualizar(id) {
+        enable_tabs();
         end_load();
         today = new Date();
         $('#txt_desc').val('');
-     //   $('#txt_valor').val('');
+        //   $('#txt_valor').val('');
         $('#txt_total').val('');
 
         $('.modal-title').text('Modificar | Miembro');
@@ -1379,14 +1361,28 @@
         });
     }
 
+    function enable_tabs() {
 
-    function remove_red()
-    {
-            div_1.classList.remove("error");
-            div_2.classList.remove("error");
-            div_3.classList.remove("error");
-            div_4.classList.remove("error");
-            div_5.classList.remove("error");
+
+        document.getElementById("plan_pestaña").classList.add('disabledTab');
+        document.getElementById("miembro").classList.remove('disabledTab');
+        document.getElementById("plan_pestaña").classList.add('enableTab');
+        document.getElementById("plan_pestaña").classList.add('active');
+        //document.getElementById("member_form").classList.remove('active');
+        // document.getElementById("plan_form").classList.add('active');
+        // document.getElementById("plan_form").classList.add('show');
+
+        $('#plan_button').attr("style", " ");
+
+
+    }
+
+    function remove_red() {
+        div_1.classList.remove("error");
+        div_2.classList.remove("error");
+        div_3.classList.remove("error");
+        div_4.classList.remove("error");
+        div_5.classList.remove("error");
     }
 </script>
 

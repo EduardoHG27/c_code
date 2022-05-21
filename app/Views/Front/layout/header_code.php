@@ -7,7 +7,7 @@
     </div>
     <ul class="nav-links">
       <li>
-        <a href="<?php echo base_url(); ?>/principal/inicio">
+        <a href="<?php echo base_url(); ?>/principal/dashboard">
           <i class='bx bx-home' ></i>
           <span class="link_name">Inicio</span>
         </a>
@@ -67,6 +67,15 @@
         </a>
         <ul class="sub-menu blank">
           <li><a class="link_name" href="">Salir</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="<?php echo base_url(); ?>/principal/inicio">
+          <i class='bx bx-x-circle'></i>
+          <span class="link_name">Dash</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="">Dash</a></li>
         </ul>
       </li>
 

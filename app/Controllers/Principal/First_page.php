@@ -28,6 +28,18 @@ class First_page extends BaseController
         }
     }
 
+    public function dash()
+    {
+        $session = session();
+
+        if ($session->get('usuario')) {
+            return view('Principal/view_dash');
+        } else {
+            return view('Auth/Home');
+        }
+    }
+
+
     public function student()
     {
         $session = session();

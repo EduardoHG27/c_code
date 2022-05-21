@@ -56,6 +56,7 @@ $routes->group('principal', ['namespace' => 'App\Controllers\Principal'], functi
     $routes->get('data', 'First_page::data');
     $routes->get('staff', 'First_page::staff');
     $routes->get('boot', 'First_page::boot');
+    $routes->get('dashboard', 'First_page::dash');
     $routes->get('session_out', 'First_page::get_out');
     $routes->post('ajax_load_data', 'First_page::ajax_load_data');
 });

@@ -1,19 +1,25 @@
 <?=$this->extend('Front/layout/main')?>
 <?= $this->section('content') ?>
 
-<style>
- 
-</style>
+
 
 <?php $session = session();?> 
 
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
+            
                 <div class="card-body">
                     <?php echo "Welcome back ". $session->get('usuario')."!"  ?>
                     <hr>
                     <div class="row">
+                    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  
+
+
+                    
+
+  </main>
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body bg-primary">
@@ -88,11 +94,16 @@
                       
                     </div>	
                 </div>
+
             </div>      			
         </div>
+        
     </div>
+
+    
     
 </div>
+
 <script>
 
 $(document).click(function(event) { 

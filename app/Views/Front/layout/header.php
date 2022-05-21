@@ -184,8 +184,18 @@ Optional theme -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="<?php echo base_url(); ?>/css/bootstrap/estilos.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>/css/bootstrap/estilos_tablas.css" rel="stylesheet">
+<link id="pagestyle" href="<?php echo base_url(); ?>/assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
 
+<link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
 <!-- 
 datatable anterior
 <script src="<?php echo base_url(); ?>/assets/data/js/jquery.min.js"></script>
@@ -254,6 +264,7 @@ https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js
     <a href="<?php echo base_url(); ?>/principal/student">Miembros</a>
     <a href="<?php echo base_url(); ?>/principal/plans">Planes</a>
     <a href="<?php echo base_url(); ?>/principal/staff">Staff</a>
+    <a href="<?php echo base_url(); ?>/principal/staff">DASHBOARD</a>
     <a href="<?php echo base_url(); ?>/principal/boot">Boot</a>
     <a href="<?php echo base_url(); ?>/principal/session_out">Salir</a>
   </div>

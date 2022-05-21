@@ -56,10 +56,7 @@ class Login extends BaseController
                     ]);
             } else {
 
-               
-
                 //use App\Models\StudetsModel;
-
                 $paysModel = new PaysModel();
                 $membersModel = new StudetsModel();
                 $data = $paysModel->where('pay_status', 'true');
@@ -99,8 +96,6 @@ class Login extends BaseController
                      
                     }
                     
-                  
-
                 }
 
 
@@ -112,7 +107,7 @@ class Login extends BaseController
 
                    $session = \Config\Services::session();
                   $session->set($data);
-                 return redirect()->route('principal/inicio');
+                 return redirect()->route('principal/dashboard');
             }
         }
     }
